@@ -81,16 +81,17 @@ public class Person {
         }
     }
 
-    public void addChild(Person child){
+    public void addChild(Person child) {
         for (int i = 0; i < children.length; i++) {
-            if(children[i] == null){
+            if (children[i] == null) {
                 children[i] = child;
-            }
-            else{
-                System.out.println("the children array is full");
+                break;    // this part in the old code had a problem
+                // it was adding the child to the first index only
+                // so I added the break statement to stop the loop
             }
         }
     }
+
 
     public void getOldestChild(){
         int max = 0;
@@ -103,18 +104,20 @@ public class Person {
     }
 
     public void getYoungestChild(){
-        int max = 80;
+        int min = 1000;
         for (int i = 0; i < children.length; i++) {
-            if(children[i].age < max){
-                max = children[i].age;
+            if(children[i].age < min){
+                min = children[i].age;
             }
         }
-        System.out.println("the oldest child is: " + max);
+        System.out.println("the youngest child is: " + min);
     }
 
-    @Override
+
     public String toString() {
         StringBuilder sb = new StringBuilder();
+
+
 
         sb.append("Name: ").append(name)
                 .append("\nAddress: ").append(address)
